@@ -1,23 +1,29 @@
-import logo from './logo.svg';
+import { Routes, Route, Navigate } from 'react-router';
+
+import { useSelector } from 'react-redux';
+
 import './App.css';
 
+import Auth from './components/pages/Auth';
+import AddNewTodo from './components/pages/AddNewTodo';
+import Layout from './components/layout/Layout';
+
+
 function App() {
+
+  const isLoggedIn = useSelector(state => state.user.isLoggedIn);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Layout>
+        <Routes>
+          <Route path='/' element={<p>WELCOME to TODO APP</p>} />
+          {!isLoggedIn && (<Route path='/auth' element={<Auth />} />)}
+          {!isLoggedIn && (<Route path='/profile' element={<Auth />} />)}
+          {isLoggedIn && (<Route path='/profile' element={<AddNewTodo />} />)}
+          <Route path='*' element={<Navigate to={'/'} />} />
+        </Routes>
+      </Layout>
     </div>
   );
 }
