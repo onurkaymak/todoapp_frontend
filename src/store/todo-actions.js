@@ -1,48 +1,48 @@
-import { ref, set, get, child, remove } from "firebase/database";
+// import { ref, set, get, child, remove } from "firebase/database";
 
-import database from "./firebase";
+// import database from "./firebase";
 
-import { todoActions } from "./todo-slice";
+// import { todoActions } from "./todo-slice";
 
-export const fetchData = () => {
-    return async (dispatch) => {
-        const fetchRequest = async () => {
-            const dbRef = ref(database);
-            const response = await get(child(dbRef, 'todos'))
-            const data = response.toJSON()
+// export const fetchData = () => {
+//     return async (dispatch) => {
+//         const fetchRequest = async () => {
+//             const dbRef = ref(database);
+//             const response = await get(child(dbRef, 'todos'))
+//             const data = response.toJSON()
 
-            return data;
-        }
-        const todoData = await fetchRequest()
-        dispatch(todoActions.fetch(todoData));
-    }
-}
+//             return data;
+//         }
+//         const todoData = await fetchRequest()
+//         dispatch(todoActions.fetch(todoData));
+//     }
+// }
 
-export const sendData = (userInput) => {
-    return async (dispatch) => {
-        const sendRequest = async () => {
-            await set(ref(database, 'todos/' + userInput.id), {
-                todos: userInput.todo,
-                color: userInput.color,
-                id: userInput.id
-            })
-        };
+// export const sendData = (userInput) => {
+//     return async (dispatch) => {
+//         const sendRequest = async () => {
+//             await set(ref(database, 'todos/' + userInput.id), {
+//                 todos: userInput.todo,
+//                 color: userInput.color,
+//                 id: userInput.id
+//             })
+//         };
 
-        await sendRequest()
-        dispatch(todoActions.add(userInput));
-    };
-}
+//         await sendRequest()
+//         dispatch(todoActions.add(userInput));
+//     };
+// }
 
-export const deleteData = (id) => {
-    return async (dispatch) => {
+// export const deleteData = (id) => {
+//     return async (dispatch) => {
 
-        const deleteRequest = async () => {
-            await remove(ref(database, 'todos/' + id))
-        }
-        await deleteRequest()
-        dispatch(todoActions.delete(id));
-    }
-}
+//         const deleteRequest = async () => {
+//             await remove(ref(database, 'todos/' + id))
+//         }
+//         await deleteRequest()
+//         dispatch(todoActions.delete(id));
+//     }
+// }
 
 
 
