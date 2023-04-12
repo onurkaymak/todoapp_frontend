@@ -8,41 +8,35 @@ import { useEffect, useCallback } from 'react';
 
 import { userActions } from '../../store/user-slice';
 
-import { calculateRemainingTime } from '../../store/auth-actions';
+// import { calculateRemainingTime } from '../../store/auth-actions';
 
 import { logoutHandlerr } from '../../store/auth-actions';
 
+
+
 export let logoutTimer;
 
-export const setLogoutTimer = (value) => {
-  logoutTimer = value;
+// export const setLogoutTimer = (value) => {
+//   logoutTimer = value;
+// }
+
+export const calculateRemainingTime = (expirationTime) => {
+  const currentTime = new Date().getTime();
+
+  const adjExpirationTime = new Date(expirationTime).getTime();
+
+
+  const remainingDuration = adjExpirationTime - currentTime;
+
+  return remainingDuration
 }
 
-
-const retrieveStoredToken = () => {
-
-  const storedToken = localStorage.getItem('token');
-  const storedExpirationDate = localStorage.getItem('expirationTime');
-
-  const remainingTime = calculateRemainingTime(storedExpirationDate);
-
-  if (remainingTime <= 60000) {
-    localStorage.removeItem('token');
-    localStorage.removeItem('expirationTime');
-    return null
-  }
-
-  return { token: storedToken, remainingTime };
-}
 
 const MainNavigation = () => {
 
   const dispatch = useDispatch();
 
   const isLoggedIn = useSelector(state => state.user.isLoggedIn);
-  const token = useSelector(state => state.user.token);
-
-
 
   const logoutHandler = useCallback(() => {
     dispatch(logoutHandlerr())
@@ -50,23 +44,52 @@ const MainNavigation = () => {
 
 
   useEffect(() => {
-    const tokenData = retrieveStoredToken();
+    const storedData = JSON.parse(localStorage.getItem('userData'));
 
-    let initialToken;
-    let initialTime;
+    if (storedData && storedData.token && new Date(storedData.expiration) > new Date()) {
 
-    if (tokenData) {
-      initialToken = tokenData.token;
-      initialTime = tokenData.remainingTime;
+      const userId = storedData.userId;
+      const token = storedData.token;
+      const expirationTime = storedData.expiration;
 
-      logoutTimer = setTimeout(logoutHandler, initialTime);
-      dispatch(userActions.login({ token: initialToken, remainingTime: initialTime }));
+      const remainingTime = calculateRemainingTime(expirationTime);
+
+
+      if (remainingTime <= 60000) {
+        logoutHandler()
+        // return null
+      }
+      else {
+        dispatch(userActions.login({ userId, token, expirationTime }));
+        dispatch(userActions.setIsLoggedIn(true));
+        logoutTimer = setTimeout(logoutHandler, remainingTime);
+      }
     }
+  }, [dispatch, logoutHandler]);
 
-    if (token) {
-      dispatch(userActions.setIsLoggedIn(true));
-    }
-  }, [dispatch, token, logoutHandler])
+
+
+
+
+
+  // useEffect(() => {
+  //   const tokenData = retrieveStoredToken();
+
+  //   let initialToken;
+  //   let initialTime;
+
+  //   if (tokenData) {
+  //     initialToken = tokenData.token;
+  //     initialTime = tokenData.remainingTime;
+
+  //     logoutTimer = setTimeout(logoutHandler, initialTime);
+  //     dispatch(userActions.login({ token: initialToken, remainingTime: initialTime }));
+  //   }
+
+  //   if (token) {
+  //     dispatch(userActions.setIsLoggedIn(true));
+  //   }
+  // }, [dispatch, token, logoutHandler])
 
 
 
@@ -101,3 +124,24 @@ const MainNavigation = () => {
 };
 
 export default MainNavigation;
+
+
+
+
+
+
+// const retrieveStoredToken = () => {
+
+//   const storedToken = localStorage.getItem('token');
+//   const storedExpirationDate = localStorage.getItem('expirationTime');
+
+//   const remainingTime = calculateRemainingTime(storedExpirationDate);
+
+//   if (remainingTime <= 60000) {
+//     localStorage.removeItem('token');
+//     localStorage.removeItem('expirationTime');
+//     return null
+//   }
+
+//   return { token: storedToken, remainingTime };
+// }

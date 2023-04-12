@@ -10,7 +10,6 @@ import Notification from '../../UI/Notification';
 
 import { useNavigate } from 'react-router';
 
-import axios from 'axios';
 
 
 const AuthForm = () => {
@@ -54,33 +53,16 @@ const AuthForm = () => {
     setIsValidated(true);
 
     if (isLogin) {
+
       const userInfo = {
         enteredEmail,
         enteredPassword
       }
-
-      const sendLoginUser = async (userInfo) => {
-        const { enteredEmail, enteredPassword } = userInfo;
-        try {
-          const response = await axios.post('http://localhost:4000/api/users/login',
-            {
-              "email": enteredEmail,
-              "password": enteredPassword
-            });
-          console.log(response.data);
-        }
-        catch (error) {
-          console.log(error.response.data.message);
-        }
-      }
-      sendLoginUser(userInfo);
       dispatch(signInUser(userInfo));
       navigate('/profile', { replace: true });
 
-
     } else {
-      // dispatch(createUser(userInfo))
-      // navigate('/profile', { replace: true })\
+
       const enteredName = nameInputRef.current.value;
 
       if (enteredName.trim() === '') {
@@ -97,25 +79,10 @@ const AuthForm = () => {
         enteredPassword
       }
 
-      // const sendCreateUser = async (userInfo) => {
-      //   const { enteredName, enteredEmail, enteredPassword } = userInfo;
-      //   try {
-      //     const response = await axios.post('http://localhost:4000/api/users/signup',
-      //       {
-      //         "name": enteredName,
-      //         "email": enteredEmail,
-      //         "password": enteredPassword
-      //       });
-      //     console.log(response.data);
-      //   }
-      //   catch (err) {
-      //     console.log(err);
-      //   }
-      // }
-      // sendCreateUser(userInfo);
       try {
         dispatch(createUser(userInfo))
-      } catch (error) {
+      }
+      catch (error) {
         return console.log(error);
       }
       navigate('/profile', { replace: true })
