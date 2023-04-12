@@ -1,9 +1,6 @@
-// import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-
-// import { uiActions } from "./ui-slice";
 import { userActions } from "./user-slice";
 
-// import { logoutTimer, setLogoutTimer } from "../components/layout/MainNavigation";
+import { logoutTimer } from "../components/layout/MainNavigation";
 
 import axios from 'axios';
 
@@ -11,15 +8,15 @@ import axios from 'axios';
 
 
 
-export const logoutHandlerr = () => {
+export const logout = () => {
     return async (dispatch) => {
         dispatch(userActions.logout())
         dispatch(userActions.setIsLoggedIn(false));
         localStorage.removeItem('userData');
 
-        // if (logoutTimer) {
-        //     clearTimeout(logoutTimer)
-        // }
+        if (logoutTimer) {
+            clearTimeout(logoutTimer)
+        }
     }
 }
   
@@ -72,8 +69,6 @@ export const signInUser = (userInfo) => {
           const token = response.data.token;
         //   const expirationTime = new Date(new Date().getTime() + 1000 * 60 * 60);
           const expirationTimeISO = new Date(new Date().getTime() + 1000 * 60 * 60).toISOString();
-      
-
 
           localStorage.setItem('userData', JSON.stringify({
             userId,
