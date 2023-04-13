@@ -18,25 +18,14 @@ import Layout from './components/layout/Layout';
 
 function App() {
 
-  // const dispatch = useDispatch();
-
   const isLoggedIn = useSelector(state => state.user.isLoggedIn);
-
-
-
-  // console.log(isLoggedIn)
-
-  // const userid = useSelector(state => state.user.userId)
-  // const usertoken = useSelector(state => state.user.token)
-  // const tokenexpirationTime = useSelector(state => state.user.expirationTime)
-
-
 
   return (
     <div>
       <Layout>
         <Routes>
-          <Route path='/' element={<p>WELCOME to TODO APP</p>} />
+          {isLoggedIn && (<Route path='/' element={<Navigate to={'/profile'} />} />)}
+          {!isLoggedIn && (<Route path='/' element={<Navigate to={'/auth'} />} />)}
           {!isLoggedIn && (<Route path='/auth' element={<Auth />} />)}
           {!isLoggedIn && (<Route path='/profile' element={<Auth />} />)}
           {isLoggedIn && (<Route path='/profile' element={<AddNewTodo />} />)}
