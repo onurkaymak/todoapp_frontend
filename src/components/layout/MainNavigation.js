@@ -54,7 +54,6 @@ const MainNavigation = () => {
       dispatch(userActions.login({ userId, token, expirationTime }));
       dispatch(userActions.setIsLoggedIn(true));
       const remainingTime = calculateRemainingTime(expirationTime)
-      console.log(remainingTime)
       logoutTimer = setTimeout(logout, remainingTime);
     }
     else {

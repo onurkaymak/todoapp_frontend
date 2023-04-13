@@ -7,7 +7,7 @@ import TodoItem from './TodoItem';
 import { useSelector, useDispatch } from 'react-redux';
 
 
-import { fetchData, deleteData } from '../../store/todo-actions';
+// import { fetchData, deleteData } from '../../store/todo-actions';
 
 
 const Todos = () => {
@@ -21,7 +21,7 @@ const Todos = () => {
 
 
     const removeHandler = (id) => {
-        dispatch(deleteData(id))
+        // dispatch(deleteData(id))
     };
 
 

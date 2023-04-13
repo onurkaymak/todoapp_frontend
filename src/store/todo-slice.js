@@ -18,13 +18,13 @@ const todoSlice = createSlice({
                     todo: data[key].todos,
                     color: data[key].color,
                     id: data[key].id
-                    });
-                }
+                });
+            }
         },
         add(state, action) {
             state.todos.push(action.payload);
         },
-        delete(state, action) { 
+        delete(state, action) {
             const deleteId = action.payload;
             state.todos = state.todos.filter(todo => todo.id !== deleteId);
         },

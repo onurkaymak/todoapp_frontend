@@ -1,8 +1,8 @@
-// import { ref, set, get, child, remove } from "firebase/database";
+import { todoActions } from "./todo-slice";
 
-// import database from "./firebase";
+import { useSelector } from 'react-redux';
 
-// import { todoActions } from "./todo-slice";
+import axios from 'axios';
 
 // export const fetchData = () => {
 //     return async (dispatch) => {
@@ -18,20 +18,44 @@
 //     }
 // }
 
-// export const sendData = (userInput) => {
-//     return async (dispatch) => {
-//         const sendRequest = async () => {
-//             await set(ref(database, 'todos/' + userInput.id), {
-//                 todos: userInput.todo,
-//                 color: userInput.color,
-//                 id: userInput.id
-//             })
-//         };
 
-//         await sendRequest()
-//         dispatch(todoActions.add(userInput));
-//     };
-// }
+export const createTodo = (userInput) => {
+    return async (dispatch) => {
+
+        const { todo, important, token } = userInput;
+
+        try {
+            const response = await axios.post('http://localhost:4000/api/todos',
+                {
+                    "todo": todo,
+                    "important": important
+                },
+                {
+                    headers: { Authorization: `Bearer ${token}` }
+                }
+            );
+            console.log(response);
+
+            // dispatch(todoActions.add({ userId, token, expirationTimeISO }));
+            // dispatch(userActions.setIsLoggedIn(true));
+        }
+        catch (err) {
+            console.log(err);
+        }
+
+
+        // const sendRequest = async () => {
+        //     await set(ref(database, 'todos/' + userInput.id), {
+        //         todos: userInput.todo,
+        //         color: userInput.color,
+        //         id: userInput.id
+        //     })
+        // };
+
+        // await sendRequest()
+        // dispatch(todoActions.add(userInput));
+    };
+}
 
 // export const deleteData = (id) => {
 //     return async (dispatch) => {
