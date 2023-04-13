@@ -34,10 +34,10 @@ export const createTodo = (userInput) => {
                     headers: { Authorization: `Bearer ${token}` }
                 }
             );
-            console.log(response);
+            const responseTodo = response.data.todo;
 
-            // dispatch(todoActions.add({ userId, token, expirationTimeISO }));
-            // dispatch(userActions.setIsLoggedIn(true));
+            dispatch(todoActions.add(responseTodo));
+
         }
         catch (err) {
             console.log(err);

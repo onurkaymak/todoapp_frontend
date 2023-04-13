@@ -13,6 +13,7 @@ import { useSelector, useDispatch } from 'react-redux';
 const Todos = () => {
 
     const todos = useSelector(state => state.todos.todos);
+    console.log(todos)
     const dispatch = useDispatch();
 
     // useEffect(() => {
@@ -27,7 +28,7 @@ const Todos = () => {
 
 
 
-    const currentTodos = todos.map(todo => <TodoItem onRemoveTodo={() => removeHandler(todo.id)} id={todo.id} key={todo.key} todo={todo.todo} color={todo.color} />)
+    const currentTodos = todos.map(todo => <TodoItem onRemoveTodo={() => removeHandler(todo._id)} id={todo._id} key={todo._id} todo={todo.todo} important={todo.important} />)
     // todoCtx.removeTodo.bind(null, todo.id)
 
 

@@ -34,8 +34,6 @@ const NewTodo = () => {
             return
         }
 
-
-
         const userInput = {
             todo: inputRef.current.value,
             important: importantRef.current.checked,
