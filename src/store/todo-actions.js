@@ -1,16 +1,12 @@
 import { todoActions } from "./todo-slice";
 
-
-
 import axios from 'axios';
+
 
 export const fetchTodos = (info) => {
     return async (dispatch) => {
 
         const { token, userId } = info;
-
-        // console.log(token)
-        // console.log(userId)
 
         try {
             const response = await axios.get(`http://localhost:4000/api/todos/${userId}`,
@@ -20,26 +16,11 @@ export const fetchTodos = (info) => {
             );
             const fetchedTodos = response.data.todos;
 
-            // console.log(fetchedTodos)
-
             dispatch(todoActions.fetch(fetchedTodos));
-
         }
         catch (err) {
             console.log(err);
         }
-
-
-
-        // const fetchRequest = async () => {
-        //     const dbRef = ref(database);
-        //     const response = await get(child(dbRef, 'todos'))
-        //     const data = response.toJSON()
-
-        //     return data;
-        // }
-        // const todoData = await fetchRequest()
-        // dispatch(todoActions.fetch(todoData));
     }
 }
 
@@ -61,6 +42,7 @@ export const createTodo = (userInput) => {
             );
             const responseTodo = response.data.todo;
 
+
             const createdTodo = {
                 key: responseTodo._id,
                 todo: responseTodo.todo,
@@ -78,16 +60,24 @@ export const createTodo = (userInput) => {
     };
 }
 
-// export const deleteData = (id) => {
-//     return async (dispatch) => {
 
-//         const deleteRequest = async () => {
-//             await remove(ref(database, 'todos/' + id))
-//         }
-//         await deleteRequest()
-//         dispatch(todoActions.delete(id));
-//     }
-// }
+export const deleteTodo = (todoId, token) => {
+    return async (dispatch) => {
+
+        try {
+            const response = await axios.delete(`http://localhost:4000/api/todos/${todoId}`,
+                {
+                    headers: { Authorization: `Bearer ${token}` }
+                }
+            );
+            console.log(response)
+            dispatch(todoActions.delete(todoId));
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+}
 
 
 

@@ -2,36 +2,34 @@ import classes from './Todos.module.css';
 
 import { Fragment, useCallback, useEffect } from 'react';
 
-import TodoItem from './TodoItem';
-
 import { useSelector, useDispatch } from 'react-redux';
 
+import { fetchTodos, deleteTodo } from '../../store/todo-actions';
 
-import { fetchTodos } from '../../store/todo-actions';
+import TodoItem from './TodoItem';
+
+
 
 
 const Todos = () => {
 
     const todos = useSelector(state => state.todos.todos);
-
-    // console.log(todos)
-
     const token = useSelector(state => state.user.token);
     const userId = useSelector(state => state.user.userId);
 
-    // const token = useSelector(state => state.user.token);
-
     const dispatch = useDispatch();
 
-    const fetcher = useCallback(() => { dispatch(fetchTodos({ token, userId })) }, [])
+    const fetcher = useCallback(() => { dispatch(fetchTodos({ token, userId })) }, [dispatch, token, userId])
 
     useEffect(() => {
         fetcher()
     }, [dispatch, token, userId, fetcher])
 
 
-    const removeHandler = (id) => {
-        // dispatch(deleteData(id))
+
+
+    const removeHandler = (todoId) => {
+        dispatch(deleteTodo(todoId, token))
     };
 
 
