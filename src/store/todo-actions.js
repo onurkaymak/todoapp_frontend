@@ -61,7 +61,15 @@ export const createTodo = (userInput) => {
             );
             const responseTodo = response.data.todo;
 
-            dispatch(todoActions.add(responseTodo));
+            const createdTodo = {
+                key: responseTodo._id,
+                todo: responseTodo.todo,
+                important: responseTodo.important,
+                creator: responseTodo.creator,
+                id: responseTodo._id
+            }
+
+            dispatch(todoActions.add(createdTodo));
 
         }
         catch (err) {

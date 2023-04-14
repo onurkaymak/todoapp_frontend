@@ -14,7 +14,7 @@ const Todos = () => {
 
     const todos = useSelector(state => state.todos.todos);
 
-    console.log(todos)
+    // console.log(todos)
 
     const token = useSelector(state => state.user.token);
     const userId = useSelector(state => state.user.userId);
