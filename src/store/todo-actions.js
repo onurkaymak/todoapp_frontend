@@ -1,22 +1,47 @@
 import { todoActions } from "./todo-slice";
 
-import { useSelector } from 'react-redux';
+
 
 import axios from 'axios';
 
-// export const fetchData = () => {
-//     return async (dispatch) => {
-//         const fetchRequest = async () => {
-//             const dbRef = ref(database);
-//             const response = await get(child(dbRef, 'todos'))
-//             const data = response.toJSON()
+export const fetchTodos = (info) => {
+    return async (dispatch) => {
 
-//             return data;
-//         }
-//         const todoData = await fetchRequest()
-//         dispatch(todoActions.fetch(todoData));
-//     }
-// }
+        const { token, userId } = info;
+
+        // console.log(token)
+        // console.log(userId)
+
+        try {
+            const response = await axios.get(`http://localhost:4000/api/todos/${userId}`,
+                {
+                    headers: { Authorization: `Bearer ${token}` }
+                }
+            );
+            const fetchedTodos = response.data.todos;
+
+            // console.log(fetchedTodos)
+
+            dispatch(todoActions.fetch(fetchedTodos));
+
+        }
+        catch (err) {
+            console.log(err);
+        }
+
+
+
+        // const fetchRequest = async () => {
+        //     const dbRef = ref(database);
+        //     const response = await get(child(dbRef, 'todos'))
+        //     const data = response.toJSON()
+
+        //     return data;
+        // }
+        // const todoData = await fetchRequest()
+        // dispatch(todoActions.fetch(todoData));
+    }
+}
 
 
 export const createTodo = (userInput) => {
@@ -42,18 +67,6 @@ export const createTodo = (userInput) => {
         catch (err) {
             console.log(err);
         }
-
-
-        // const sendRequest = async () => {
-        //     await set(ref(database, 'todos/' + userInput.id), {
-        //         todos: userInput.todo,
-        //         color: userInput.color,
-        //         id: userInput.id
-        //     })
-        // };
-
-        // await sendRequest()
-        // dispatch(todoActions.add(userInput));
     };
 }
 

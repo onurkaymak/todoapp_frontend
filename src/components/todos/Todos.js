@@ -1,24 +1,33 @@
 import classes from './Todos.module.css';
 
-import { Fragment, useEffect } from 'react';
+import { Fragment, useCallback, useEffect } from 'react';
 
 import TodoItem from './TodoItem';
 
 import { useSelector, useDispatch } from 'react-redux';
 
 
-// import { fetchData, deleteData } from '../../store/todo-actions';
+import { fetchTodos } from '../../store/todo-actions';
 
 
 const Todos = () => {
 
     const todos = useSelector(state => state.todos.todos);
+
     console.log(todos)
+
+    const token = useSelector(state => state.user.token);
+    const userId = useSelector(state => state.user.userId);
+
+    // const token = useSelector(state => state.user.token);
+
     const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     dispatch(fetchData())
-    // },[dispatch])
+    const fetcher = useCallback(() => { dispatch(fetchTodos({ token, userId })) }, [])
+
+    useEffect(() => {
+        fetcher()
+    }, [dispatch, token, userId, fetcher])
 
 
     const removeHandler = (id) => {
@@ -28,7 +37,8 @@ const Todos = () => {
 
 
 
-    const currentTodos = todos.map(todo => <TodoItem onRemoveTodo={() => removeHandler(todo._id)} id={todo._id} key={todo._id} todo={todo.todo} important={todo.important} />)
+    const currentTodos = todos.map(todo => <TodoItem onRemoveTodo={() => removeHandler(todo.id)} id={todo.id} key={todo.id} todo={todo.todo} important={todo.important} creator={todo.creator} />)
+    // (<TodoItem onRemoveTodo={() => removeHandler(todo.id)} id={todo.id} key={todo.id} todo={todo.todo} important={todo.important} creator={todo.creator} />)
     // todoCtx.removeTodo.bind(null, todo.id)
 
 

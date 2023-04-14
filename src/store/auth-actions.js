@@ -3,6 +3,7 @@ import { userActions } from "./user-slice";
 import { logoutTimer } from "../components/layout/MainNavigation";
 
 import axios from 'axios';
+import { todoActions } from "./todo-slice";
 
 
 
@@ -12,6 +13,7 @@ export const logout = () => {
     return async (dispatch) => {
         dispatch(userActions.logout())
         dispatch(userActions.setIsLoggedIn(false));
+        dispatch(todoActions.resetTodos());
         localStorage.removeItem('userData');
 
         if (logoutTimer) {

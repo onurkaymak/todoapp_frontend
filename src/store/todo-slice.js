@@ -12,14 +12,15 @@ const todoSlice = createSlice({
     reducers: {
         fetch(state, action) {
             const data = action.payload;
-            for (const key in data) {
+            data.map(todo => (
                 state.todos.push({
-                    key: data[key].id,
-                    todo: data[key].todos,
-                    color: data[key].color,
-                    id: data[key].id
-                });
-            }
+                    key: todo.id,
+                    todo: todo.todo,
+                    important: todo.important,
+                    creator: todo.creator,
+                    id: todo.id
+                })
+            ))
         },
         add(state, action) {
             state.todos.push(action.payload);
@@ -30,6 +31,9 @@ const todoSlice = createSlice({
         },
         inputEmpty(state, action) {
             state.isInputEmpty = action.payload;
+        },
+        resetTodos(state, action) {
+            state.todos = []
         }
     }
 });
