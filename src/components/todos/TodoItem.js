@@ -3,7 +3,7 @@ import classes from './TodoItem.module.css';
 
 import { useState, useRef } from "react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { updateTodo } from "../../store/todo-actions";
 
@@ -12,6 +12,9 @@ import { updateTodo } from "../../store/todo-actions";
 const TodoItem = (props) => {
 
     //// todoId, token, updatedTodo
+    const token = useSelector(state => state.user.token);
+    const test = useSelector(state => state.todos.todos);
+    console.log(test)
 
     const dispatch = useDispatch();
 
@@ -36,7 +39,15 @@ const TodoItem = (props) => {
         if (updateInputRef.current.value === '') {
             return setIsUpdateInputEmpty(true)
         }
-        dispatch(updateTodo());
+
+        const updatedTodoData = {
+            token,
+            todoId: props.id,
+            updatedTodo: updateInputRef.current.value
+        }
+        dispatch(updateTodo(updatedTodoData));
+        setIsUpdateOn(false)
+
     }
 
 

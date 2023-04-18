@@ -26,6 +26,12 @@ const todoSlice = createSlice({
             const deleteId = action.payload;
             state.todos = state.todos.filter(todo => todo.id !== deleteId);
         },
+        update(state, action) {
+            const todoId = action.payload.todoId;
+            const updatedTodo = action.payload.updatedTodo;
+            const foundedTodo = state.todos.find(todo => todo.id === todoId);
+            foundedTodo.todo = updatedTodo;
+        },
         inputEmpty(state, action) {
             state.isInputEmpty = action.payload;
         },
