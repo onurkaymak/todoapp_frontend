@@ -2,7 +2,7 @@ import { useState, useRef, Fragment } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import classes from './AuthForm.module.css';
+import classes from './AuthForm.module.scss';
 
 import { createUser, signInUser } from '../../store/auth-actions';
 

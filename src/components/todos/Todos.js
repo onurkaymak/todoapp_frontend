@@ -1,4 +1,4 @@
-import classes from './Todos.module.css';
+import classes from './Todos.module.scss';
 
 import { Fragment, useCallback, useEffect } from 'react';
 

@@ -87,7 +87,7 @@ export const updateTodo = (updatedTodoData) => {
         const { todoId, updatedTodo, token } = updatedTodoData;
 
         try {
-            const response = await axios.patch(`http://localhost:4000/api/todos/${todoId}`,
+            await axios.patch(`http://localhost:4000/api/todos/${todoId}`,
                 {
                     todoId,
                     updatedTodo

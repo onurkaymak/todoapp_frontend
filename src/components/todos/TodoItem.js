@@ -1,5 +1,5 @@
 import Card from "../../UI/Card";
-import classes from './TodoItem.module.css';
+import classes from './TodoItem.module.scss';
 
 import { useState, useRef } from "react";
 

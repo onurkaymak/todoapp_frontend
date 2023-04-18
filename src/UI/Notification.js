@@ -1,4 +1,4 @@
-import classes from './Notification.module.css';
+import classes from './Notification.module.scss';
 
 import { uiActions } from '../store/ui-slice';
 

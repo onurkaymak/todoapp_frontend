@@ -1,4 +1,4 @@
-import classes from './NewTodo.module.css';
+import classes from './NewTodo.module.scss';
 import Card from '../../UI/Card';
 
 import { Fragment, useRef } from 'react';

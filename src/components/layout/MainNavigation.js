@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import classes from './MainNavigation.module.css';
+import classes from './MainNavigation.module.scss';
 
 import { useSelector, useDispatch } from 'react-redux';
 
