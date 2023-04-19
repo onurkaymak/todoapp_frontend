@@ -1,50 +1,98 @@
+.container__newTodo {
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .form {
-  margin: 2rem;
-  padding: 2rem;
-  display: flex;
-  align-items: stretch;
-  flex-direction: column;
+  width: 40rem;
+  display: grid;
+  grid-template-columns: 70% 30%;
+
+  &__input {
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    font-size: 2rem;
+    display: inline-block;
+  }
+
+  &__icon__container {
+    margin-left: 2rem;
+    display: inline-flex;
+    justify-content: space-between;
+  }
+
+  &__important {
+    display: none;
+  }
+
+  &__button_submit {
+    font-size: 2rem;
+    color: #dee2e6;
+    background-color: #1864ab;
+    border: 1px solid #094175;
+    border-radius: 20px;
+    padding: 5px 20px;
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: #094175;
+      border: 1px solid #094175;
+      transform: translateY(-1px);
+    }
+  }
 }
 
-.form input,
-.form button {
-  display: block;
-}
+// .form {
+//   margin: 2rem;
+//   padding: 2rem;
+//   display: flex;
+//   align-items: stretch;
+//   flex-direction: column;
+// }
 
-.form input {
-  flex: 3;
-  font: inherit;
-  padding: 0.35rem 0.35rem;
-  border-radius: 6px;
-  border: 1px solid gray;
-}
+// .form input,
+// .form button {
+//   display: block;
+// }
 
-.form button {
-  flex: 5;
-  font: inherit;
-  padding: 0.35rem 0.35rem;
-  border-radius: 6px;
-  border: 1px solid black;
-  margin: 2rem;
-}
+// .form input {
+//   flex: 3;
+//   font: inherit;
+//   padding: 0.35rem 0.35rem;
+//   border-radius: 6px;
+//   border: 1px solid gray;
+// }
 
-.p {
-  text-align: center;
-  font-size: 30px;
-}
+// .form button {
+//   flex: 5;
+//   font: inherit;
+//   padding: 0.35rem 0.35rem;
+//   border-radius: 6px;
+//   border: 1px solid black;
+//   margin: 2rem;
+// }
 
-.div {
-  margin: 2rem;
-  display: flex;
-  flex-direction: row;
-  float: inline-end;
-}
+// .p {
+//   text-align: center;
+//   font-size: 30px;
+// }
 
-.div input {
-  margin-right: 20px;
-  margin-top: 12px;
-}
+// .div {
+//   margin: 2rem;
+//   display: flex;
+//   flex-direction: row;
+//   float: inline-end;
+// }
 
-.div label {
-  margin-right: 50px;
-}
+// .div input {
+//   margin-right: 20px;
+//   margin-top: 12px;
+// }
+
+// .div label {
+//   margin-right: 50px;
+// }

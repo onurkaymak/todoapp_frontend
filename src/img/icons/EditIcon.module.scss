@@ -1,0 +1,10 @@
+.editIcon {
+  height: 2rem;
+  width: 2rem;
+  fill: white;
+  cursor: pointer;
+
+  &:hover {
+    fill: blue;
+  }
+}
