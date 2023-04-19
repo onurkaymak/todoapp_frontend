@@ -10,7 +10,7 @@ import { userActions } from '../../store/user-slice';
 
 import { logout } from '../../store/auth-actions';
 
-
+import { ListIcon } from '../../img/icons/ListIcon';
 
 export let logoutTimer;
 
@@ -65,21 +65,19 @@ const MainNavigation = () => {
 
   return (
     <header className={classes.header}>
-      <Link to='/'>
-        <div className={classes.logo}>Todo App</div>
-      </Link>
+      <div className={classes.logo}>To-Do App<ListIcon /></div>
       <nav>
         <ul>
-          {!isLoggedIn && (
+          {/* {!isLoggedIn && (
             <li>
               <Link to='/auth'>Login</Link>
             </li>
-          )}
-          {isLoggedIn && (
+          )} */}
+          {/* {isLoggedIn && (
             <li>
               <Link to='/profile'>Profile</Link>
             </li>
-          )}
+          )} */}
           {isLoggedIn && (
             <li>
               <button onClick={logoutHandler}>Logout</button>

@@ -21,7 +21,7 @@ function App() {
   const isLoggedIn = useSelector(state => state.user.isLoggedIn);
 
   return (
-    <div>
+    <div className={classes.container}>
       <Layout>
         <Routes>
           {isLoggedIn && (<Route path='/' element={<Navigate to={'/profile'} />} />)}
