@@ -58,20 +58,18 @@ const NewTodo = () => {
 
     return (
         <Fragment>
-            <div className={classes.container__newTodo}>
-                <Card>
-                    <form className={classes.form} onSubmit={todoSubmitHandler}>
-                        <input name="new todo" id="new-todo" ref={inputRef} className={classes.form__input}></input>
-                        <div className={classes.form__icon__container}>
-                            <input type="checkbox" name='important' id='important' ref={importantRef}
-                                className={classes.form__important} onClick={flagHandler}></input>
-                            <FlagIcon flagColor={isFlagOn} />
-                            <button className={classes.form__button_submit}>Add</button>
-                        </div>
-                    </form>
-                </Card>
-                {isInputEmpty && <p className={classes.p}>You cannot add an empty todo!</p>}
-            </div>
+            <Card>
+                <form className={classes.form} onSubmit={todoSubmitHandler}>
+                    <input name="new todo" id="new-todo" ref={inputRef} className={classes.form__input}></input>
+                    <div className={classes.form__icon__container}>
+                        <input type="checkbox" name='important' id='important' ref={importantRef}
+                            className={classes.form__important} onClick={flagHandler}></input>
+                        <FlagIcon flagColor={isFlagOn} />
+                        <button className={classes.form__button_submit}>Add</button>
+                    </div>
+                </form>
+            </Card>
+            {isInputEmpty && <p className={classes.p}>You cannot add an empty todo!</p>}
             <Todos />
         </Fragment>
     )
