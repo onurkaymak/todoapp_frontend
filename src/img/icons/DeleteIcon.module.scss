@@ -1,4 +1,4 @@
-.editIcon {
+.deleteIcon {
   height: 2rem;
   width: 2rem;
   fill: white;
@@ -6,6 +6,6 @@
   margin-bottom: 5px;
 
   &:hover {
-    fill: greenyellow;
+    fill: red;
   }
 }

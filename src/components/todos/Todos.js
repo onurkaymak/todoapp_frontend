@@ -1,6 +1,6 @@
 import classes from './Todos.module.scss';
 
-import { Fragment, useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -26,18 +26,21 @@ const Todos = () => {
     }, [dispatch, token, userId, fetcher])
 
 
-
-
     const removeHandler = (todoId) => {
         dispatch(deleteTodo(todoId, token))
     };
 
 
+    const currentTodos = todos.map(todo =>
+        <TodoItem
+            onRemoveTodo={() => removeHandler(todo.id)}
+            id={todo.id}
+            key={todo.id}
+            todo={todo.todo}
+            important={todo.important}
+            creator={todo.creator}
+        />)
 
-
-    const currentTodos = todos.map(todo => <TodoItem onRemoveTodo={() => removeHandler(todo.id)} id={todo.id} key={todo.id} todo={todo.todo} important={todo.important} creator={todo.creator} />)
-    // (<TodoItem onRemoveTodo={() => removeHandler(todo.id)} id={todo.id} key={todo.id} todo={todo.todo} important={todo.important} creator={todo.creator} />)
-    // todoCtx.removeTodo.bind(null, todo.id)
 
 
     let content;
@@ -46,10 +49,10 @@ const Todos = () => {
     }
 
     return (
-        <Fragment>
+        <div className={classes.container__todos}>
             {currentTodos}
             {todos.length === 0 && content}
-        </Fragment>
+        </div>
     )
 };
 

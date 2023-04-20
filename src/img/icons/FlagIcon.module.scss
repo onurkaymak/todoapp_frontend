@@ -11,10 +11,22 @@
   }
 }
 
-.flagColor {
+.flagColored {
   height: 25px;
   width: 25px;
   fill: rgb(159, 18, 18);
   cursor: pointer;
-  transition: all 0.2s;
+}
+
+.isNotButton {
+  height: 25px;
+  width: 25px;
+}
+
+.isNotButton {
+  height: 25px;
+  width: 25px;
+  fill: rgb(159, 18, 18);
+  margin-right: 2rem;
+  margin-bottom: 5px;
 }

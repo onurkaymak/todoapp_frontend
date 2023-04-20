@@ -1,14 +1,13 @@
 .card {
   background: #2b354d;
-  box-shadow: 0px 5px 10px rgba(27, 16, 185, 0.75);
   border-radius: 20px;
-  // border-bottom: solid 2px rgba(27, 16, 185, 0.75);
-  /* margin-top: 50px; */
-  /* margin-inline: 350px; */
   width: 700px;
   height: 100px;
-  // margin: auto 470px;
-  display: grid;
-  justify-content: center;
-  align-items: center;
+  // background-color: yellow;
+}
+
+.card__container {
+  height: 100%;
+  width: 100%;
+  background-color: red;
 }

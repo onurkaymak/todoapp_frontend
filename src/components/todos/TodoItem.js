@@ -7,14 +7,18 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { updateTodo } from "../../store/todo-actions";
 
+import { EditIcon } from "../../img/icons/EditIcon";
+
+import { DeleteIcon } from "../../img/icons/DeleteIcon";
+
+import { FlagIcon } from "../../img/icons/FlagIcon";
+
 
 
 const TodoItem = (props) => {
 
     //// todoId, token, updatedTodo
     const token = useSelector(state => state.user.token);
-    const test = useSelector(state => state.todos.todos);
-    console.log(test)
 
     const dispatch = useDispatch();
 
@@ -50,29 +54,25 @@ const TodoItem = (props) => {
 
     }
 
-
-
     return (
-        <Card >
-            {!isUpdateOn &&
-                <div>
-                    <h1 className={classes.h1}>{props.todo}
-                        <button onClick={updateHandler}>Edit Todo</button>
-                        <button onClick={props.onRemoveTodo}>Delete Todo</button>
-                    </h1>
-                </div>}
+        <Card>
+            {!isUpdateOn && (
+                <div className={classes.isUpdateOff__container}>
+                    <h1 className={classes.isUpdateOff__todo}>{props.important && <FlagIcon isNotButton={true} />}{props.todo}</h1>
+                    <EditIcon updateHandler={updateHandler} className={classes.isUpdateOff__button_edit} />
+                    <DeleteIcon deleteHandler={props.onRemoveTodo} className={classes.isUpdateOff__button_delete} />
+                </div>
+            )}
             {isUpdateOn && (
-                <form onSubmit={updateSubmiteHandler}>
-                    <input type="text" placeholder={props.todo} ref={updateInputRef}></input>
-                    <button>Edit</button>
-                    <button onClick={cancelUpdate} type="button">Cancel</button>
+                <form onSubmit={updateSubmiteHandler} className={classes.isUpdateOn__container}>
+                    <input type="text" placeholder={props.todo} ref={updateInputRef} className={classes.isUpdateOn__input}></input>
+                    <button className={classes.isUpdateOn__button_edit}>Okay</button>
+                    <button onClick={cancelUpdate} type="button" className={classes.isUpdateOn__button_cancel}>Cancel</button>
                     {isUpdateInputEmpty && <p>You cannot add an empty todo!</p>}
                 </form>
-
             )}
         </Card>
     )
 };
 
 export default TodoItem;
-

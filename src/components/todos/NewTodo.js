@@ -17,16 +17,19 @@ import { FlagIcon } from '../../img/icons/FlagIcon';
 const NewTodo = () => {
 
     const isInputEmpty = useSelector(state => state.todos.isInputEmpty);
+
     const token = useSelector(state => state.user.token);
 
     const dispatch = useDispatch();
     const inputRef = useRef();
     const importantRef = useRef();
 
+
+
     const [isFlagOn, setIsFlagOn] = useState(false);
 
     const flagHandler = () => {
-        setIsFlagOn(() => !isFlagOn)
+        setIsFlagOn(prevState => !isFlagOn)
     }
 
     const todoSubmitHandler = async (event) => {
@@ -44,8 +47,9 @@ const NewTodo = () => {
         }
 
         dispatch(createTodo(userInput));
-        setIsFlagOn(false)
         inputRef.current.value = '';
+        importantRef.current.checked = false;
+        setIsFlagOn(false)
         dispatch(todoActions.inputEmpty(false));
     };
 
@@ -68,7 +72,7 @@ const NewTodo = () => {
                 </Card>
                 {isInputEmpty && <p className={classes.p}>You cannot add an empty todo!</p>}
             </div>
-            {/* <Todos /> */}
+            <Todos />
         </Fragment>
     )
 };
