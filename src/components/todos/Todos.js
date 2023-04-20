@@ -31,6 +31,8 @@ const Todos = () => {
     };
 
 
+    let content;
+
     const currentTodos = todos.map(todo =>
         <TodoItem
             onRemoveTodo={() => removeHandler(todo.id)}
@@ -41,17 +43,16 @@ const Todos = () => {
             creator={todo.creator}
         />)
 
-
-
-    let content;
-    if (todos.length === 0) {
+    if (currentTodos.length === 0) {
         content = <h1 className={classes.h1}>there is nothing to do.</h1>
+    }
+    else {
+        content = currentTodos;
     }
 
     return (
         <div className={classes.container__todos}>
-            {currentTodos}
-            {todos.length === 0 && content}
+            {content}
         </div>
     )
 };
