@@ -16,7 +16,7 @@ export const fetchTodos = (info) => {
             );
             const fetchedTodos = response.data.todos;
 
-            dispatch(todoActions.fetch(fetchedTodos));
+            await dispatch(todoActions.fetch(fetchedTodos));
         }
         catch (err) {
             console.log(err);
@@ -51,7 +51,7 @@ export const createTodo = (userInput) => {
                 id: responseTodo._id
             }
 
-            dispatch(todoActions.add(createdTodo));
+            await dispatch(todoActions.add(createdTodo));
 
         }
         catch (err) {
@@ -65,13 +65,12 @@ export const deleteTodo = (todoId, token) => {
     return async (dispatch) => {
 
         try {
-            const response = await axios.delete(`http://localhost:4000/api/todos/${todoId}`,
+            await axios.delete(`http://localhost:4000/api/todos/${todoId}`,
                 {
                     headers: { Authorization: `Bearer ${token}` }
                 }
             );
-            console.log(response)
-            dispatch(todoActions.delete(todoId));
+            await dispatch(todoActions.delete(todoId));
         }
         catch (err) {
             console.log(err);
@@ -96,7 +95,7 @@ export const updateTodo = (updatedTodoData) => {
                     headers: { Authorization: `Bearer ${token}` }
                 }
             );
-            dispatch(todoActions.update({ todoId, updatedTodo }));
+            await dispatch(todoActions.update({ todoId, updatedTodo }));
         }
         catch (err) {
             console.log(err);

@@ -13,6 +13,8 @@ import { DeleteIcon } from "../../img/icons/DeleteIcon";
 
 import { FlagIcon } from "../../img/icons/FlagIcon";
 
+import { CheckBoxU } from "../../img/icons/CheckBoxU";
+
 
 
 const TodoItem = (props) => {
@@ -25,6 +27,8 @@ const TodoItem = (props) => {
     const [isUpdateOn, setIsUpdateOn] = useState(false);
 
     const [isUpdateInputEmpty, setIsUpdateInputEmpty] = useState(false);
+
+    const [isChecked, setIsChecked] = useState(false);
 
     const updateInputRef = useRef();
 
@@ -54,11 +58,28 @@ const TodoItem = (props) => {
 
     }
 
+
+    const checkboxHandler = () => {
+        setIsChecked(prevState => !isChecked);
+    }
+
+
+    let todoContent;
+    if (isChecked) {
+        todoContent = `${classes.isUpdateOff__todo_checked}`
+    }
+    else {
+        todoContent = `${classes.isUpdateOff__todo}`
+    }
+
     return (
         <Card>
             {!isUpdateOn && (
                 <div className={classes.isUpdateOff__container}>
-                    <h1 className={classes.isUpdateOff__todo}>{props.important && <FlagIcon isNotButton={true} />}{props.todo}</h1>
+                    <CheckBoxU onCheck={checkboxHandler} isChecked={isChecked} />
+                    {props.important && <FlagIcon isNotButton={true} />}
+                    {!props.important && <FlagIcon isNotButtonInvis={true} />}
+                    <h1 className={todoContent}>{props.todo}</h1>
                     <EditIcon updateHandler={updateHandler} className={classes.isUpdateOff__button_edit} />
                     <DeleteIcon deleteHandler={props.onRemoveTodo} className={classes.isUpdateOff__button_delete} />
                 </div>

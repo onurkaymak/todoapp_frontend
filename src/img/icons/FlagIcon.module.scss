@@ -6,7 +6,7 @@
   transition: all 0.2s;
 
   &:hover {
-    fill: rgb(159, 18, 18);
+    fill: gold;
     transform: translateY(-2px);
   }
 }
@@ -14,7 +14,7 @@
 .flagColored {
   height: 25px;
   width: 25px;
-  fill: rgb(159, 18, 18);
+  fill: gold;
   cursor: pointer;
 }
 
@@ -26,7 +26,10 @@
 .isNotButton {
   height: 25px;
   width: 25px;
-  fill: rgb(159, 18, 18);
-  margin-right: 2rem;
+  fill: gold;
   margin-bottom: 5px;
+}
+
+.isNotButtonInvis {
+  display: none;
 }

@@ -60,7 +60,7 @@ const NewTodo = () => {
         <Fragment>
             <Card>
                 <form className={classes.form} onSubmit={todoSubmitHandler}>
-                    <input name="new todo" id="new-todo" ref={inputRef} className={classes.form__input}></input>
+                    <input name="new todo" id="new-todo" ref={inputRef} className={classes.form__input} maxLength={25}></input>
                     <div className={classes.form__icon__container}>
                         <input type="checkbox" name='important' id='important' ref={importantRef}
                             className={classes.form__important} onClick={flagHandler}></input>

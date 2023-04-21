@@ -1,0 +1,27 @@
+.editIcon {
+  height: 2rem;
+  width: 2rem;
+  fill: white;
+  cursor: pointer;
+  margin-bottom: 5px;
+  margin-left: 20px;
+  transition: all 0.2s;
+
+  &:hover {
+    fill: orange;
+    transform: translateY(-2px);
+  }
+}
+
+.editIconChecked {
+  height: 2rem;
+  width: 2rem;
+  fill: orange;
+  cursor: pointer;
+  margin-bottom: 5px;
+  margin-left: 20px;
+
+  &:hover {
+    fill: orange;
+  }
+}

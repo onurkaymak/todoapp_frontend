@@ -19,7 +19,10 @@ const Todos = () => {
 
     const dispatch = useDispatch();
 
-    const fetcher = useCallback(() => { dispatch(fetchTodos({ token, userId })) }, [dispatch, token, userId])
+    const fetcher = useCallback(async () => {
+        dispatch(fetchTodos({ token, userId }))
+    },
+        [dispatch, token, userId])
 
     useEffect(() => {
         fetcher()
@@ -44,7 +47,7 @@ const Todos = () => {
         />)
 
     if (currentTodos.length === 0) {
-        content = <h1 className={classes.h1}>there is nothing to do.</h1>
+        content = <h1 className={classes.h1}>- there is nothing to do -</h1>
     }
     else {
         content = currentTodos;

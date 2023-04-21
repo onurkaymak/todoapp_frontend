@@ -1,11 +1,13 @@
 .deleteIcon {
   height: 2rem;
   width: 2rem;
-  fill: white;
+  fill: #dee2e6;
   cursor: pointer;
   margin-bottom: 5px;
+  transition: all 0.2s;
 
   &:hover {
-    fill: red;
+    fill: crimson;
+    transform: translateY(-2px);
   }
 }
