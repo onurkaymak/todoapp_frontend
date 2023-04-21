@@ -8,6 +8,7 @@ import { fetchTodos, deleteTodo } from '../../store/todo-actions';
 
 import TodoItem from './TodoItem';
 
+import Notification from '../../UI/Notification';
 
 
 
@@ -16,6 +17,10 @@ const Todos = () => {
     const todos = useSelector(state => state.todos.todos);
     const token = useSelector(state => state.user.token);
     const userId = useSelector(state => state.user.userId);
+
+    const ui = useSelector(state => state.ui.notification);
+
+    console.log(ui)
 
     const dispatch = useDispatch();
 
@@ -55,6 +60,7 @@ const Todos = () => {
 
     return (
         <div className={classes.container__todos}>
+            {ui && <Notification title={ui.title} message={ui.message} status={ui.status} />}
             {content}
         </div>
     )

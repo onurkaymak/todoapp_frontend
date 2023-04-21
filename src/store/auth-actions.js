@@ -3,7 +3,12 @@ import { userActions } from "./user-slice";
 import { logoutTimer } from "../components/layout/MainNavigation";
 
 import axios from 'axios';
+
 import { todoActions } from "./todo-slice";
+
+import { uiActions } from "./ui-slice";
+
+
 
 
 
@@ -79,6 +84,7 @@ export const signInUser = (userInfo) => {
         }))
         dispatch(userActions.login({userId, token, expirationTimeISO}));
         dispatch(userActions.setIsLoggedIn(true));
+        dispatch(uiActions.showNotification({title: 'Login Succesful', message: `Welcome to To-do App ${userId}`, status: 'success'}))
         }
         catch (err) {
           console.log(err);
