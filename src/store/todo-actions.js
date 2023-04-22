@@ -1,5 +1,7 @@
 import { todoActions } from "./todo-slice";
 
+import { uiActions } from "./ui-slice";
+
 import axios from 'axios';
 
 
@@ -21,7 +23,7 @@ export const fetchTodos = (info) => {
             await dispatch(todoActions.fetch(fetchedTodos));
         }
         catch (err) {
-            console.log(err);
+            dispatch(uiActions.showNotification({ title: err.message, message: err.response.data.message, status: 'error' }))
         }
     }
 }
@@ -57,7 +59,7 @@ export const createTodo = (userInput) => {
 
         }
         catch (err) {
-            console.log(err);
+            dispatch(uiActions.showNotification({ title: err.message, message: err.response.data.message, status: 'error' }))
         }
     };
 }
@@ -75,7 +77,7 @@ export const deleteTodo = (todoId, token) => {
             await dispatch(todoActions.delete(todoId));
         }
         catch (err) {
-            console.log(err);
+            dispatch(uiActions.showNotification({ title: err.message, message: err.response.data.message, status: 'error' }))
         }
     }
 }
@@ -100,7 +102,7 @@ export const updateTodo = (updatedTodoData) => {
             await dispatch(todoActions.update({ todoId, updatedTodo }));
         }
         catch (err) {
-            console.log(err);
+            dispatch(uiActions.showNotification({ title: err.message, message: err.response.data.message, status: 'error' }))
         }
     }
 }
