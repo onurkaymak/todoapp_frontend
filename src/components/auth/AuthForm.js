@@ -1,12 +1,10 @@
 import { useState, useRef, Fragment } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import classes from './AuthForm.module.scss';
 
 import { createUser, signInUser } from '../../store/auth-actions';
-
-import Notification from '../../UI/Notification';
 
 import { useNavigate } from 'react-router';
 
@@ -22,9 +20,7 @@ const AuthForm = () => {
   const nameInputRef = useRef();
 
   const [isLogin, setIsLogin] = useState(true);
-  const [isValidated, setIsValidated] = useState(null)
-
-  const notification = useSelector(state => state.ui.notification);
+  const [isValidated, setIsValidated] = useState(true)
 
 
   const switchAuthModeHandler = () => {
@@ -79,43 +75,41 @@ const AuthForm = () => {
         enteredPassword
       }
 
-      try {
-        dispatch(createUser(userInfo))
-      }
-      catch (error) {
-        return console.log(error);
-      }
+
+      dispatch(createUser(userInfo))
+
       navigate('/profile', { replace: true })
 
     }
     event.target.reset()
   }
 
-
+  const focusHandler = () => {
+    setIsValidated(true)
+  }
 
 
   return (
     <Fragment>
-      {notification && (<Notification status={notification.status} title={notification.title} message={notification.message} />)}
       <section className={classes.auth}>
         <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
         <form onSubmit={submitHandler} noValidate>
           {!isLogin && <div className={classes.control}>
             <label htmlFor='name'>Your Name</label>
-            <input type='text' id='name' ref={nameInputRef} />
-            {isValidated === false && <p className={classes.errorText}>Please enter a valid name, email and password.</p>}
+            <input type='text' id='name' ref={nameInputRef} onChange={focusHandler} />
+            {!isValidated && <p className={classes.errorText}>Please enter a valid name, email and password.</p>}
           </div>}
           <div className={classes.control}>
             <label htmlFor='email'>Your Email</label>
-            <input type='email' id='email' ref={emailInputRef} />
-            {isValidated === false && isLogin && <p className={classes.errorText}>Please enter a valid email and password.</p>}
-            {isValidated === false && !isLogin && <p className={classes.errorText}>Please enter a valid name, email and password.</p>}
+            <input type='email' id='email' ref={emailInputRef} onChange={focusHandler} />
+            {!isValidated && isLogin && <p className={classes.errorText}>Please enter a valid email and password.</p>}
+            {!isValidated && !isLogin && <p className={classes.errorText}>Please enter a valid name, email and password.</p>}
           </div>
           <div className={classes.control}>
             <label htmlFor='password'>Your Password</label>
-            <input type='password' id='password' ref={passwordInputRef} />
-            {isValidated === false && isLogin && <p className={classes.errorText}>Please enter a valid email and password.</p>}
-            {isValidated === false && !isLogin && <p className={classes.errorText}>Please enter a valid name, email and password.</p>}
+            <input type='password' id='password' ref={passwordInputRef} onChange={focusHandler} />
+            {!isValidated && isLogin && <p className={classes.errorText}>Please enter a valid email and password.</p>}
+            {!isValidated && !isLogin && <p className={classes.errorText}>Please enter a valid name, email and password.</p>}
           </div>
           <div className={classes.actions}>
             <button>{isLogin ? 'Login' : 'Create Account'}</button>

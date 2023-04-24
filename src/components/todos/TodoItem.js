@@ -15,6 +15,8 @@ import { FlagIcon } from "../../img/icons/FlagIcon";
 
 import { CheckBoxU } from "../../img/icons/CheckBoxU";
 
+import { uiActions } from "../../store/ui-slice";
+
 
 
 const TodoItem = (props) => {
@@ -45,7 +47,8 @@ const TodoItem = (props) => {
         event.preventDefault()
 
         if (updateInputRef.current.value === '') {
-            return setIsUpdateInputEmpty(true)
+            dispatch(uiActions.showNotification({ title: 'Creating todo is failed', message: 'You cannot add an empty todo', status: 'error' }))
+            return
         }
 
         const updatedTodoData = {

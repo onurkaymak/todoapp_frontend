@@ -66,16 +66,6 @@ const MainNavigation = () => {
       <div className={classes.logo}>To-Do App<ListIcon /></div>
       <nav>
         <ul>
-          {/* {!isLoggedIn && (
-            <li>
-              <Link to='/auth'>Login</Link>
-            </li>
-          )} */}
-          {/* {isLoggedIn && (
-            <li>
-              <Link to='/profile'>Profile</Link>
-            </li>
-          )} */}
           {isLoggedIn && (
             <li>
               <button onClick={logoutHandler}>Logout</button>

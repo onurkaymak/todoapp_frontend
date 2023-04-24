@@ -1,7 +1,7 @@
 import classes from './NewTodo.module.scss';
 import Card from '../../UI/Card';
 
-import { Fragment, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -13,7 +13,6 @@ import Todos from './Todos';
 
 import { FlagIcon } from '../../img/icons/FlagIcon';
 
-import Notification from '../../UI/Notification';
 
 import { uiActions } from "../../store/ui-slice";
 
@@ -23,10 +22,7 @@ import { uiActions } from "../../store/ui-slice";
 
 const NewTodo = () => {
 
-    const isInputEmpty = useSelector(state => state.todos.isInputEmpty);
-
-
-    const ui = useSelector(state => state.ui.notification);
+    // const isInputEmpty = useSelector(state => state.todos.isInputEmpty);
 
     const token = useSelector(state => state.user.token);
 
@@ -46,7 +42,7 @@ const NewTodo = () => {
         event.preventDefault();
 
         if (inputRef.current.value === '') {
-            dispatch(todoActions.inputEmpty(true))
+            // dispatch(todoActions.inputEmpty(true))
             dispatch(uiActions.showNotification({ title: 'Creating todo is failed', message: 'You cannot add an empty todo', status: 'error' }))
             return
         }
@@ -68,23 +64,20 @@ const NewTodo = () => {
 
 
     return (
-        <Fragment>
-            {!ui &&
-                <Card>
-                    <form className={classes.form} onSubmit={todoSubmitHandler}>
-                        <input name="new todo" id="new-todo" ref={inputRef} className={classes.form__input} maxLength={25}></input>
-                        <div className={classes.form__icon__container}>
-                            <input type="checkbox" name='important' id='important' ref={importantRef}
-                                className={classes.form__important} onClick={flagHandler}></input>
-                            <FlagIcon flagColor={isFlagOn} />
-                            <button className={classes.form__button_submit}>Add</button>
-                        </div>
-                    </form>
-                </Card>
-            }
-            {ui && <Notification title={ui.title} message={ui.message} status={ui.status} />}
-            {!ui && <Todos />}
-        </Fragment>
+        <div className={classes.newTodo__container}>
+            <Card>
+                <form className={classes.form} onSubmit={todoSubmitHandler}>
+                    <input name="new todo" id="new-todo" ref={inputRef} className={classes.form__input} maxLength={25}></input>
+                    <div className={classes.form__icon__container}>
+                        <input type="checkbox" name='important' id='important' ref={importantRef}
+                            className={classes.form__important} onClick={flagHandler}></input>
+                        <FlagIcon flagColor={isFlagOn} />
+                        <button className={classes.form__button_submit}>Add</button>
+                    </div>
+                </form>
+            </Card>
+            <Todos />
+        </div>
     )
 };
 

@@ -5,6 +5,7 @@ import { Routes, Route, Navigate } from 'react-router';
 // import { useEffect } from 'react';
 
 import { useSelector } from 'react-redux';
+import Notification from './UI/Notification';
 
 import classes from './App.module.scss';
 
@@ -20,8 +21,11 @@ function App() {
 
   const isLoggedIn = useSelector(state => state.user.isLoggedIn);
 
+  const ui = useSelector(state => state.ui.notification);
+
   return (
     <div className={classes.container}>
+      {ui && <Notification title={ui.title} message={ui.message} status={ui.status} />}
       <Layout>
         <Routes>
           {isLoggedIn && (<Route path='/' element={<Navigate to={'/profile'} />} />)}

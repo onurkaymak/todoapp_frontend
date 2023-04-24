@@ -1,8 +1,12 @@
 import NewTodo from "../todos/NewTodo";
 
+import classes from './AddNewTodo.module.scss'
+
 const AddNewTodo = () => {
     return (
-        <NewTodo/>
+        <div className={classes.container}>
+            <NewTodo />
+        </div>
     )
 }
 
