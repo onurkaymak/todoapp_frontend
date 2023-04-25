@@ -14,11 +14,6 @@ import { FlagIcon } from '../../img/icons/FlagIcon';
 import { uiActions } from "../../store/ui-slice";
 
 
-
-
-
-
-
 const NewTodo = () => {
     const token = useSelector(state => state.user.token);
 

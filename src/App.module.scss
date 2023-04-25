@@ -10,5 +10,26 @@
 
 html {
   background-color: #020617;
-  overflow: none;
+  overflow: hidden;
+  font-size: 62.5%;
+
+  @media only screen and (min-width: 1500px) {
+    font-size: 80%;
+  }
+
+  @media only screen and (min-width: 2000px) {
+    font-size: 100%;
+  }
+
+  @media only screen and (min-width: 3000px) {
+    font-size: 140%;
+  }
+
+  @media only screen and (min-width: 3500px) {
+    font-size: 160%;
+  }
+
+  @media only screen and (max-width: 500px) {
+    font-size: 50%;
+  }
 }

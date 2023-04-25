@@ -10,7 +10,7 @@
   width: 90%;
   display: grid;
   grid-template-columns: 70% 30%;
-  column-gap: 30px;
+  column-gap: 3rem;
   align-items: center;
   justify-items: center;
 
@@ -27,14 +27,14 @@
     width: 90%;
     border: none;
     outline: none;
-    border-radius: 20px;
+    border-radius: 2rem;
     font-size: 2rem;
-    border: 5px solid transparent;
+    border: 0.5rem solid transparent;
     transition: all 0.2s;
     padding-left: 1rem;
 
     &:hover {
-      border: 5px solid gray;
+      border: 0.5rem solid gray;
     }
   }
 
@@ -48,7 +48,7 @@
     color: #dee2e6;
     background-color: #1864ab;
     border: 1px solid #094175;
-    border-radius: 20px;
+    border-radius: 2rem;
     transition: all 0.2s;
 
     &:hover {
