@@ -86,6 +86,7 @@ const TodoItem = (props) => {
                     <EditIcon updateHandler={updateHandler} className={classes.isUpdateOff__button_edit} />
                     <DeleteIcon deleteHandler={props.onRemoveTodo} className={classes.isUpdateOff__button_delete} />
                 </div>
+
             )}
             {isUpdateOn && (
                 <form onSubmit={updateSubmiteHandler} className={classes.isUpdateOn__container}>

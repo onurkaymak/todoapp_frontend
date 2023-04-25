@@ -13,14 +13,15 @@ export const fetchTodos = (info) => {
         const { token, userId } = info;
 
         try {
+            dispatch(todoActions.loading(true))
             const response = await axios.get(`http://localhost:4000/api/todos/${userId}`,
                 {
                     headers: { Authorization: `Bearer ${token}` }
                 }
             );
             const fetchedTodos = response.data.todos;
-
-            await dispatch(todoActions.fetch(fetchedTodos));
+            dispatch(todoActions.fetch(fetchedTodos));
+            dispatch(todoActions.loading(false))
         }
         catch (err) {
             dispatch(uiActions.showNotification({ title: err.message, message: err.response.data.message, status: 'error' }))
@@ -55,7 +56,7 @@ export const createTodo = (userInput) => {
                 id: responseTodo._id
             }
 
-            await dispatch(todoActions.add(createdTodo));
+            dispatch(todoActions.add(createdTodo));
 
         }
         catch (err) {

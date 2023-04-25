@@ -5,14 +5,11 @@ import { useRef, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { todoActions } from '../../store/todo-slice';
-
 import { createTodo } from '../../store/todo-actions';
 
 import Todos from './Todos';
 
 import { FlagIcon } from '../../img/icons/FlagIcon';
-
 
 import { uiActions } from "../../store/ui-slice";
 
@@ -20,10 +17,9 @@ import { uiActions } from "../../store/ui-slice";
 
 
 
+
+
 const NewTodo = () => {
-
-    // const isInputEmpty = useSelector(state => state.todos.isInputEmpty);
-
     const token = useSelector(state => state.user.token);
 
     const dispatch = useDispatch();
@@ -42,7 +38,6 @@ const NewTodo = () => {
         event.preventDefault();
 
         if (inputRef.current.value === '') {
-            // dispatch(todoActions.inputEmpty(true))
             dispatch(uiActions.showNotification({ title: 'Creating todo is failed', message: 'You cannot add an empty todo', status: 'error' }))
             return
         }
@@ -57,7 +52,6 @@ const NewTodo = () => {
         inputRef.current.value = '';
         importantRef.current.checked = false;
         setIsFlagOn(false)
-        dispatch(todoActions.inputEmpty(false));
     };
 
 
@@ -84,9 +78,3 @@ const NewTodo = () => {
 export default NewTodo;
 
 
-
-/* <div className={classes.div}>
-    <input type="checkbox" name='important' id='important' ref={importantRef}></input>
-    <label>Check as an important todo</label>
-</div>
-<button className='btn btn-primary'>Add New Todo!</button> */

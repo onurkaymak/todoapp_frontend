@@ -11,9 +11,9 @@ import TodoItem from './TodoItem';
 
 
 
-
 const Todos = () => {
 
+    const isLoading = useSelector(state => state.todos.isLoading);
     const todos = useSelector(state => state.todos.todos);
     const token = useSelector(state => state.user.token);
     const userId = useSelector(state => state.user.userId);
@@ -27,6 +27,7 @@ const Todos = () => {
 
     useEffect(() => {
         fetcher()
+
     }, [dispatch, token, userId, fetcher])
 
 
@@ -47,17 +48,19 @@ const Todos = () => {
             creator={todo.creator}
         />)
 
-    if (currentTodos.length === 0) {
+    if (!isLoading && currentTodos.length === 0) {
         content = <h1 className={classes.h1}>- there is nothing to do -</h1>
     }
     else {
         content = currentTodos;
     }
 
+
+
     return (
         <div className={classes.container__todos}>
             {content}
-        </div>
+        </div >
     )
 };
 

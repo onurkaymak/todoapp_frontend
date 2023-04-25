@@ -4,7 +4,7 @@ const todoSlice = createSlice({
     name: 'todos',
     initialState: {
         todos: [],
-        isInputEmpty: null
+        isLoading: false
     },
     reducers: {
         fetch(state, action) {
@@ -32,11 +32,11 @@ const todoSlice = createSlice({
             const foundedTodo = state.todos.find(todo => todo.id === todoId);
             foundedTodo.todo = updatedTodo;
         },
-        inputEmpty(state, action) {
-            state.isInputEmpty = action.payload;
-        },
         resetTodos(state, action) {
             state.todos = []
+        },
+        loading(state, action) {
+            state.isLoading = action.payload;
         }
     }
 });
