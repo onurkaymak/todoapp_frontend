@@ -1,9 +1,25 @@
 .card {
   background: #2b354d;
   border-radius: 2rem;
-  width: 70rem;
+  width: 50vw;
   height: 8.5rem;
   margin: auto;
   margin-top: 5rem;
   box-shadow: 0px 0px 30px 0px rgba(30, 23, 225, 0.8);
+
+  @media only screen and (min-width: 1500px) {
+    height: 10rem;
+  }
+
+  @media only screen and (max-width: 900px) {
+    width: 70vw;
+    height: 7.5rem;
+  }
+  @media only screen and (max-width: 650px) {
+    width: 85vw;
+  }
+
+  @media only screen and (max-width: 500px) {
+    height: 6rem;
+  }
 }

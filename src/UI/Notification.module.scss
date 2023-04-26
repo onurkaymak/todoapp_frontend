@@ -1,8 +1,8 @@
 .notification {
   background: white;
   border-radius: 20px;
-  width: 900px;
-  height: 75px;
+  width: 50%;
+  height: 10%;
   position: absolute;
   z-index: 50;
 
@@ -26,8 +26,12 @@
 
 .notification h2,
 .notification p {
-  font-size: 1rem;
+  font-size: 1.3rem;
   margin: 0;
+
+  @media only screen and (min-width: 1500px) {
+    font-size: 2rem;
+  }
 }
 
 .error {

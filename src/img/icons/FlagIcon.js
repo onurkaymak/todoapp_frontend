@@ -17,8 +17,8 @@ export const FlagIcon = (props) => {
     }
 
     return (
-        <div>
-            {!props.isNotButton && <label htmlFor={'important'}>
+        <div className={classes.div}>
+            {!props.isNotButton && <label htmlFor={'important'} >
                 <svg
                     xmlns="../../img/sprite.svg#icon-flag.svg"
                     viewBox="0 0 32 32"

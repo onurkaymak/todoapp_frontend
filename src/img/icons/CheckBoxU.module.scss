@@ -1,11 +1,25 @@
+.label {
+  height: 3rem;
+  width: 3rem;
+
+  @media only screen and (max-width: 1150px) {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
+  @media only screen and (max-width: 500px) {
+    height: 2rem;
+    width: 2rem;
+  }
+}
+
 .editIcon {
-  height: 3.5rem;
-  width: 3.5rem;
   fill: white;
   cursor: pointer;
-  margin-bottom: 0.5rem;
-  margin-left: 2rem;
   transition: all 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     fill: orange;
@@ -14,12 +28,8 @@
 }
 
 .editIconChecked {
-  height: 3.5rem;
-  width: 3.5rem;
   fill: orange;
   cursor: pointer;
-  margin-bottom: 0.5rem;
-  margin-left: 2rem;
 
   &:hover {
     fill: orange;

@@ -2,10 +2,10 @@ import classes from './EditIcon.module.scss';
 
 export const EditIcon = (props) => {
     return (
-        <label onClick={props.updateHandler}>
+        <label onClick={props.updateHandler} className={classes.label}>
             <svg
                 xmlns="../../img/sprite.svg#icon-edit.svg"
-                // viewBox="0 0 32 32"
+                viewBox="0 0 32 32"
                 className={classes.editIcon}
             >
                 <title>Update</title>

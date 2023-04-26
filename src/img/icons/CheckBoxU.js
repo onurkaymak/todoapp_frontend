@@ -10,10 +10,10 @@ export const CheckBoxU = (props) => {
         content =
             <svg
                 xmlns="../../img/sprite.svg#icon-checkbox-unchecked.svg"
-                // viewBox="0 0 32 32"
+                viewBox="0 0 32 32"
                 className={classes.editIcon}
             >
-                <title>Mark as checked</title>
+                {/* <title>Mark as checked</title> */}
                 <path d="M28 0h-24c-2.2 0-4 1.8-4 4v24c0 2.2 1.8 4 4 4h24c2.2 0 4-1.8 4-4v-24c0-2.2-1.8-4-4-4zM28 28h-24v-24h24v24z"></path>
             </svg>
 
@@ -22,7 +22,7 @@ export const CheckBoxU = (props) => {
         content =
             <svg
                 xmlns="../../img/sprite.svg#icon-checkbox-checked.svg"
-                // viewBox="0 0 32 32"
+                viewBox="0 0 32 32"
                 className={classes.editIconChecked}
             >
                 <title>Mark as unchecked</title>
@@ -32,7 +32,7 @@ export const CheckBoxU = (props) => {
     }
 
     return (
-        <label onClick={props.onCheck}>
+        <label onClick={props.onCheck} className={classes.label}>
             {content}
         </label>
     )

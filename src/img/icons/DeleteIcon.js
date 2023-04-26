@@ -2,10 +2,11 @@ import classes from './DeleteIcon.module.scss';
 
 export const DeleteIcon = (props) => {
     return (
-        <label onClick={props.deleteHandler}>
+        <label onClick={props.deleteHandler} className={classes.label}>
             <svg
                 xmlns="../../img/sprite.svg#icon-delete.svg"
                 className={classes.deleteIcon}
+                viewBox="0 0 32 32"
             >
                 <title>Delete</title>
                 <path d="M4 10v20c0 1.1 0.9 2 2 2h18c1.1 0 2-0.9 2-2v-20h-22zM10 

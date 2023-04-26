@@ -7,15 +7,15 @@
 
 .form {
   height: 100%;
-  width: 90%;
+  width: 100%;
   display: grid;
   grid-template-columns: 70% 30%;
-  column-gap: 3rem;
   align-items: center;
   justify-items: center;
 
   &__icon__container {
     position: relative;
+    height: 100%;
     width: 100%;
     display: grid;
     grid-template-columns: 30% 70%;
@@ -33,6 +33,14 @@
     transition: all 0.2s;
     padding-left: 1rem;
 
+    @media only screen and (min-width: 1500px) {
+      font-size: 3rem;
+    }
+
+    @media only screen and (max-width: 350px) {
+      font-size: 1.5rem;
+    }
+
     &:hover {
       border: 0.5rem solid gray;
     }
@@ -44,12 +52,33 @@
   }
 
   &__button_submit {
+    height: 4rem;
+    width: 8rem;
     font-size: 2rem;
+    justify-self: center;
     color: #dee2e6;
     background-color: #1864ab;
     border: 1px solid #094175;
     border-radius: 2rem;
     transition: all 0.2s;
+
+    @media only screen and (min-width: 1500px) {
+      height: 5rem;
+      width: 12rem;
+      font-size: 2.5rem;
+    }
+
+    @media only screen and (max-width: 500px) {
+      height: 4rem;
+      width: 6rem;
+      font-size: 1.6rem;
+    }
+
+    @media only screen and (max-width: 350px) {
+      height: 3rem;
+      width: 5rem;
+      font-size: 1.3rem;
+    }
 
     &:hover {
       background-color: #094175;

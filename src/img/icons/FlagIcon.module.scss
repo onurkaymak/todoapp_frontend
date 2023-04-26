@@ -1,9 +1,25 @@
+.div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .flagIcon {
   height: 2.5rem;
-  width: 2.5;
+  width: 2.5rem;
   fill: #dee2e6;
   cursor: pointer;
   transition: all 0.2s;
+
+  @media only screen and (max-width: 600px) {
+    height: 2rem;
+    width: 2rem;
+  }
+
+  @media only screen and (max-width: 350px) {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
 
   &:hover {
     fill: gold;
@@ -21,13 +37,12 @@
 .isNotButton {
   height: 2.5rem;
   width: 2.5rem;
-}
-
-.isNotButton {
-  height: 2.5rem;
-  width: 2.5rem;
   fill: gold;
-  margin-bottom: 0.5rem;
+
+  @media only screen and (max-width: 500px) {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
 }
 
 .isNotButtonInvis {

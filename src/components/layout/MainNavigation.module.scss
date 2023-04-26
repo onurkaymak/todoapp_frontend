@@ -17,6 +17,10 @@
   font-size: 3rem;
   color: #dee2e6;
   margin: 0;
+
+  @media only screen and (max-width: 500px) {
+    font-size: 2rem;
+  }
 }
 
 .header ul {
