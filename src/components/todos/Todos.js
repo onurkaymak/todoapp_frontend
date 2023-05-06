@@ -9,8 +9,6 @@ import { fetchTodos, deleteTodo } from '../../store/todo-actions';
 import TodoItem from './TodoItem';
 
 
-
-
 const Todos = () => {
 
     const isLoading = useSelector(state => state.todos.isLoading);

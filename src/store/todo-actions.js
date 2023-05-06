@@ -14,7 +14,7 @@ export const fetchTodos = (info) => {
 
         try {
             dispatch(todoActions.loading(true))
-            const response = await axios.get(`http://localhost:4000/api/todos/${userId}`,
+            const response = await axios.get(process.env.REACT_APP_BACKEND_URL + `/api/todos/${userId}`,
                 {
                     headers: { Authorization: `Bearer ${token}` }
                 }
@@ -36,7 +36,7 @@ export const createTodo = (userInput) => {
         const { todo, important, token } = userInput;
 
         try {
-            const response = await axios.post('http://localhost:4000/api/todos',
+            const response = await axios.post(process.env.REACT_APP_BACKEND_URL + '/api/todos',
                 {
                     "todo": todo,
                     "important": important
@@ -70,7 +70,7 @@ export const deleteTodo = (todoId, token) => {
     return async (dispatch) => {
 
         try {
-            await axios.delete(`http://localhost:4000/api/todos/${todoId}`,
+            await axios.delete(process.env.REACT_APP_BACKEND_URL + `/api/todos/${todoId}`,
                 {
                     headers: { Authorization: `Bearer ${token}` }
                 }
@@ -91,7 +91,7 @@ export const updateTodo = (updatedTodoData) => {
         const { todoId, updatedTodo, token } = updatedTodoData;
 
         try {
-            await axios.patch(`http://localhost:4000/api/todos/${todoId}`,
+            await axios.patch(process.env.REACT_APP_BACKEND_URL + `/api/todos/${todoId}`,
                 {
                     todoId,
                     updatedTodo

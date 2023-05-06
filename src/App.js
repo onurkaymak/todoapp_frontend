@@ -7,7 +7,7 @@ import Notification from './UI/Notification';
 import classes from './App.module.scss';
 
 import Auth from './components/pages/Auth';
-// import AddNewTodo from './components/pages/AddNewTodo';
+
 import Layout from './components/layout/Layout';
 
 import { Suspense, lazy } from 'react';

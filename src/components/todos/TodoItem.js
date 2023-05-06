@@ -21,7 +21,6 @@ import { uiActions } from "../../store/ui-slice";
 
 const TodoItem = (props) => {
 
-    //// todoId, token, updatedTodo
     const token = useSelector(state => state.user.token);
 
     const dispatch = useDispatch();

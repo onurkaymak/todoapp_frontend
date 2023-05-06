@@ -30,18 +30,16 @@ export const createUser = (userInfo) => {
 
     const { enteredName, enteredEmail, enteredPassword } = userInfo;
     try {
-      const response = await axios.post('http://localhost:4000/api/users/signup',
+      const response = await axios.post(process.env.REACT_APP_BACKEND_URL + '/api/users/login/users/signup',
         {
           "name": enteredName,
           "email": enteredEmail,
           "password": enteredPassword
-        });
+        },);
 
       const userId = response.data.userId;
       const token = response.data.token;
-      //   const expirationTime = new Date(new Date().getTime() + 1000 * 60 * 60);
       const expirationTimeISO = new Date(new Date().getTime() + 1000 * 60 * 60).toISOString();
-
 
       localStorage.setItem('userData', JSON.stringify({
         userId,
@@ -62,7 +60,7 @@ export const signInUser = (userInfo) => {
 
     const { enteredEmail, enteredPassword } = userInfo;
     try {
-      const response = await axios.post('http://localhost:4000/api/users/login',
+      const response = await axios.post(process.env.REACT_APP_BACKEND_URL + '/api/users/login',
         {
           "email": enteredEmail,
           "password": enteredPassword
@@ -70,7 +68,6 @@ export const signInUser = (userInfo) => {
 
       const userId = response.data.userId;
       const token = response.data.token;
-      //   const expirationTime = new Date(new Date().getTime() + 1000 * 60 * 60);
       const expirationTimeISO = new Date(new Date().getTime() + 1000 * 60 * 60).toISOString();
 
       localStorage.setItem('userData', JSON.stringify({
