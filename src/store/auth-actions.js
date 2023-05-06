@@ -30,7 +30,7 @@ export const createUser = (userInfo) => {
 
     const { enteredName, enteredEmail, enteredPassword } = userInfo;
     try {
-      const response = await axios.post(process.env.REACT_APP_BACKEND_URL + 'api/users/login/users/signup',
+      const response = await axios.post(process.env.REACT_APP_BACKEND_URL + '/api/users/login/users/signup',
         {
           "name": enteredName,
           "email": enteredEmail,
@@ -60,7 +60,7 @@ export const signInUser = (userInfo) => {
 
     const { enteredEmail, enteredPassword } = userInfo;
     try {
-      const response = await axios.post(process.env.REACT_APP_BACKEND_URL + 'api/users/login',
+      const response = await axios.post(process.env.REACT_APP_BACKEND_URL + '/api/users/login',
         {
           "email": enteredEmail,
           "password": enteredPassword
