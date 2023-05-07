@@ -30,6 +30,7 @@ export const createUser = (userInfo) => {
 
     const { enteredName, enteredEmail, enteredPassword } = userInfo;
     try {
+      dispatch(uiActions.setIsLoading(true))
       const response = await axios.post(process.env.REACT_APP_BACKEND_URL + 'api/users/login/users/signup',
         {
           "name": enteredName,
@@ -48,6 +49,7 @@ export const createUser = (userInfo) => {
       }))
       dispatch(userActions.login({ userId, token, expirationTimeISO }));
       dispatch(userActions.setIsLoggedIn(true));
+      dispatch(uiActions.setIsLoading(false))
     }
     catch (err) {
       dispatch(uiActions.showNotification({ title: err.message, message: err.response.data.message, status: 'error' }))
@@ -60,6 +62,7 @@ export const signInUser = (userInfo) => {
 
     const { enteredEmail, enteredPassword } = userInfo;
     try {
+      dispatch(uiActions.setIsLoading(true))
       const response = await axios.post(process.env.REACT_APP_BACKEND_URL + 'api/users/login',
         {
           "email": enteredEmail,
@@ -77,6 +80,7 @@ export const signInUser = (userInfo) => {
       }))
       dispatch(userActions.login({ userId, token, expirationTimeISO }));
       dispatch(userActions.setIsLoggedIn(true));
+      dispatch(uiActions.setIsLoading(false))
     }
     catch (err) {
       dispatch(uiActions.showNotification({ title: err.message, message: err.response.data.message, status: 'error' }))

@@ -2,7 +2,10 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const uiSlice = createSlice({
   name: 'ui',
-  initialState: { notification: null },
+  initialState: {
+    notification: null,
+    isLoading: false
+  },
   reducers: {
     showNotification(state, action) {
       state.notification = {
@@ -12,7 +15,10 @@ const uiSlice = createSlice({
       };
     },
     setNotification(state, action) {
-        state.notification = null
+      state.notification = null
+    },
+    setIsLoading(state, action) {
+      state.isLoading = action.payload;
     }
   },
 });

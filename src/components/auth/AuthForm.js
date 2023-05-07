@@ -1,6 +1,6 @@
 import { useState, useRef, Fragment } from 'react';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import classes from './AuthForm.module.scss';
 
@@ -11,6 +11,8 @@ import { useNavigate } from 'react-router';
 
 
 const AuthForm = () => {
+
+  const isLoading = useSelector(state => state.ui.isLoading);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -88,6 +90,18 @@ const AuthForm = () => {
     setIsValidated(true)
   }
 
+  let buttonContent;
+
+  if (isLoading) {
+    buttonContent = 'Loading...'
+  }
+  else if (!isLoading && isLogin) {
+    buttonContent = 'Login';
+  }
+  else {
+    buttonContent = 'Create Account';
+  }
+
 
   return (
     <Fragment>
@@ -112,7 +126,11 @@ const AuthForm = () => {
             {!isValidated && !isLogin && <p className={classes.errorText}>Please enter a valid name, email and password.</p>}
           </div>
           <div className={classes.actions}>
-            <button>{isLogin ? 'Login' : 'Create Account'}</button>
+            <button>
+              {buttonContent}
+              {/* {loading && <LoadingSpinner />}
+              {isLogin ? 'Login' : 'Create Account'} */}
+            </button>
             <button
               type='button'
               className={classes.toggle}

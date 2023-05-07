@@ -1,8 +1,9 @@
+import './LoadingSpinner.module.scss';
 
 const LoadingSpinner = () => {
 
     return (
-        <h1>Loading...</h1>
+        <p>Loading...</p>
     )
 
 };

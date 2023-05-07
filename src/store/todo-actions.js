@@ -13,7 +13,7 @@ export const fetchTodos = (info) => {
         const { token, userId } = info;
 
         try {
-            dispatch(todoActions.loading(true))
+            dispatch(uiActions.setIsLoading(true))
             const response = await axios.get(process.env.REACT_APP_BACKEND_URL + `api/todos/${userId}`,
                 {
                     headers: { Authorization: `Bearer ${token}` }
@@ -21,7 +21,7 @@ export const fetchTodos = (info) => {
             );
             const fetchedTodos = response.data.todos;
             dispatch(todoActions.fetch(fetchedTodos));
-            dispatch(todoActions.loading(false))
+            dispatch(uiActions.setIsLoading(false))
         }
         catch (err) {
             dispatch(uiActions.showNotification({ title: err.message, message: err.response.data.message, status: 'error' }))
@@ -36,6 +36,7 @@ export const createTodo = (userInput) => {
         const { todo, important, token } = userInput;
 
         try {
+            dispatch(uiActions.setIsLoading(true))
             const response = await axios.post(process.env.REACT_APP_BACKEND_URL + 'api/todos',
                 {
                     "todo": todo,
@@ -55,9 +56,8 @@ export const createTodo = (userInput) => {
                 creator: responseTodo.creator,
                 id: responseTodo._id
             }
-
             dispatch(todoActions.add(createdTodo));
-
+            dispatch(uiActions.setIsLoading(false))
         }
         catch (err) {
             dispatch(uiActions.showNotification({ title: err.message, message: err.response.data.message, status: 'error' }))
@@ -68,14 +68,15 @@ export const createTodo = (userInput) => {
 
 export const deleteTodo = (todoId, token) => {
     return async (dispatch) => {
-
         try {
+            dispatch(uiActions.setIsLoading(true))
             await axios.delete(process.env.REACT_APP_BACKEND_URL + `api/todos/${todoId}`,
                 {
                     headers: { Authorization: `Bearer ${token}` }
                 }
             );
             await dispatch(todoActions.delete(todoId));
+            dispatch(uiActions.setIsLoading(false))
         }
         catch (err) {
             dispatch(uiActions.showNotification({ title: err.message, message: err.response.data.message, status: 'error' }))
@@ -91,6 +92,7 @@ export const updateTodo = (updatedTodoData) => {
         const { todoId, updatedTodo, token } = updatedTodoData;
 
         try {
+            dispatch(uiActions.setIsLoading(true))
             await axios.patch(process.env.REACT_APP_BACKEND_URL + `api/todos/${todoId}`,
                 {
                     todoId,
@@ -100,7 +102,8 @@ export const updateTodo = (updatedTodoData) => {
                     headers: { Authorization: `Bearer ${token}` }
                 }
             );
-            await dispatch(todoActions.update({ todoId, updatedTodo }));
+            dispatch(todoActions.update({ todoId, updatedTodo }));
+            dispatch(uiActions.setIsLoading(false))
         }
         catch (err) {
             dispatch(uiActions.showNotification({ title: err.message, message: err.response.data.message, status: 'error' }))

@@ -3,8 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const todoSlice = createSlice({
     name: 'todos',
     initialState: {
-        todos: [],
-        isLoading: false
+        todos: []
     },
     reducers: {
         fetch(state, action) {
@@ -34,9 +33,6 @@ const todoSlice = createSlice({
         },
         resetTodos(state, action) {
             state.todos = []
-        },
-        loading(state, action) {
-            state.isLoading = action.payload;
         }
     }
 });

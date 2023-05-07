@@ -9,9 +9,10 @@ import { fetchTodos, deleteTodo } from '../../store/todo-actions';
 import TodoItem from './TodoItem';
 
 
+
 const Todos = () => {
 
-    const isLoading = useSelector(state => state.todos.isLoading);
+    const isLoading = useSelector(state => state.ui.isLoading);
     const todos = useSelector(state => state.todos.todos);
     const token = useSelector(state => state.user.token);
     const userId = useSelector(state => state.user.userId);
@@ -48,6 +49,9 @@ const Todos = () => {
 
     if (!isLoading && currentTodos.length === 0) {
         content = <h1 className={classes.h1}>- there is nothing to do -</h1>
+    }
+    else if (isLoading) {
+        content = <h1 className={classes.h1}>Loading...</h1>
     }
     else {
         content = currentTodos;
