@@ -7,6 +7,7 @@ import classes from './AuthForm.module.scss';
 import { createUser, signInUser } from '../../store/auth-actions';
 
 import { useNavigate } from 'react-router';
+import LoadingSpinner from '../../UI/LoadingSpinner';
 
 
 
@@ -93,7 +94,7 @@ const AuthForm = () => {
   let buttonContent;
 
   if (isLoading) {
-    buttonContent = 'Loading...'
+    buttonContent = <LoadingSpinner />
   }
   else if (!isLoading && isLogin) {
     buttonContent = 'Login';

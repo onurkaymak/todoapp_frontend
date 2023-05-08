@@ -31,7 +31,7 @@ export const createUser = (userInfo) => {
     const { enteredName, enteredEmail, enteredPassword } = userInfo;
     try {
       dispatch(uiActions.setIsLoading(true))
-      const response = await axios.post(process.env.REACT_APP_BACKEND_URL + 'api/users/login/users/signup',
+      const response = await axios.post(process.env.REACT_APP_BACKEND_URL + 'api/users/signup',
         {
           "name": enteredName,
           "email": enteredEmail,

@@ -1,9 +1,9 @@
-import './LoadingSpinner.module.scss';
+import classes from './LoadingSpinner.module.scss';
 
 const LoadingSpinner = () => {
 
     return (
-        <p>Loading...</p>
+        <div className={classes.loadingspinner}></div>
     )
 
 };

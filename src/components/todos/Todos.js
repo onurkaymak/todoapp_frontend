@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchTodos, deleteTodo } from '../../store/todo-actions';
 
 import TodoItem from './TodoItem';
+import LoadingSpinner from '../../UI/LoadingSpinner';
 
 
 
@@ -51,7 +52,7 @@ const Todos = () => {
         content = <h1 className={classes.h1}>- there is nothing to do -</h1>
     }
     else if (isLoading) {
-        content = <h1 className={classes.h1}>Loading...</h1>
+        content = <h1 className={classes.h1}><LoadingSpinner /></h1>
     }
     else {
         content = currentTodos;
