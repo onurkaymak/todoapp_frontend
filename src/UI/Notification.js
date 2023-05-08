@@ -11,16 +11,6 @@ const Notification = (props) => {
 
   const dispatch = useDispatch();
 
-  let specialClasses = '';
-
-  if (props.status === 'error') {
-    specialClasses = classes.error;
-  }
-  if (props.status === 'success') {
-    specialClasses = classes.success;
-  }
-
-  const cssClasses = `${classes.notification} ${specialClasses}`;
 
   const clickHandler = () => {
     dispatch(uiActions.setNotification())
@@ -29,7 +19,7 @@ const Notification = (props) => {
   return (
     <div className={classes.notification__container}>
       <div className={classes.notification__bg}></div>
-      <section className={cssClasses}>
+      <section className={classes.notification}>
         <h2 className={classes.title}>{props.title}</h2>
         <p className={classes.message}>{props.message}</p>
         <button className={classes.button} onClick={clickHandler}>Okay</button>

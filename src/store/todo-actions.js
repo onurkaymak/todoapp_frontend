@@ -24,7 +24,7 @@ export const fetchTodos = (info) => {
             dispatch(uiActions.setIsLoading(false))
         }
         catch (err) {
-            dispatch(uiActions.showNotification({ title: err.message, message: err.response.data.message, status: 'error' }))
+            dispatch(uiActions.showNotification({ title: err.message, message: err.response.data.message }))
         }
     }
 }
@@ -60,7 +60,7 @@ export const createTodo = (userInput) => {
             dispatch(uiActions.setIsLoading(false))
         }
         catch (err) {
-            dispatch(uiActions.showNotification({ title: err.message, message: err.response.data.message, status: 'error' }))
+            dispatch(uiActions.showNotification({ title: err.message, message: err.response.data.message }))
         }
     };
 }
@@ -79,7 +79,7 @@ export const deleteTodo = (todoId, token) => {
             dispatch(uiActions.setIsLoading(false))
         }
         catch (err) {
-            dispatch(uiActions.showNotification({ title: err.message, message: err.response.data.message, status: 'error' }))
+            dispatch(uiActions.showNotification({ title: err.message, message: err.response.data.message }))
         }
     }
 }
@@ -106,7 +106,7 @@ export const updateTodo = (updatedTodoData) => {
             dispatch(uiActions.setIsLoading(false))
         }
         catch (err) {
-            dispatch(uiActions.showNotification({ title: err.message, message: err.response.data.message, status: 'error' }))
+            dispatch(uiActions.showNotification({ title: err.message, message: err.response.data.message }))
         }
     }
 }

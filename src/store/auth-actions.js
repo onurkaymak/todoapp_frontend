@@ -52,7 +52,8 @@ export const createUser = (userInfo) => {
       dispatch(uiActions.setIsLoading(false))
     }
     catch (err) {
-      dispatch(uiActions.showNotification({ title: err.message, message: err.response.data.message, status: 'error' }))
+      dispatch(uiActions.showNotification({ title: err.message, message: err.response.data.message }))
+      dispatch(uiActions.setIsLoading(false))
     }
   }
 }
@@ -83,7 +84,8 @@ export const signInUser = (userInfo) => {
       dispatch(uiActions.setIsLoading(false))
     }
     catch (err) {
-      dispatch(uiActions.showNotification({ title: err.message, message: err.response.data.message, status: 'error' }))
+      dispatch(uiActions.showNotification({ title: err.message, message: err.response.data.message }))
+      dispatch(uiActions.setIsLoading(false))
     }
 
   }

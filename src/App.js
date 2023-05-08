@@ -11,6 +11,7 @@ import Auth from './components/pages/Auth';
 import Layout from './components/layout/Layout';
 
 import { Suspense, lazy } from 'react';
+import LoadingSpinner from './UI/LoadingSpinner';
 
 const AddNewTodo = lazy(() => import('./components/pages/AddNewTodo'))
 
@@ -25,9 +26,9 @@ function App() {
 
   return (
     <div className={classes.container}>
-      {ui && <Notification title={ui.title} message={ui.message} status={ui.status} />}
+      {ui && <Notification title={ui.title} message={ui.message} />}
       <Layout>
-        <Suspense fallback={<h1>Loading...</h1>}>
+        <Suspense fallback={<LoadingSpinner />}>
           <Routes>
             {isLoggedIn && (<Route path='/' element={<Navigate to={'/profile'} />} />)}
             {!isLoggedIn && (<Route path='/' element={<Navigate to={'/auth'} />} />)}
