@@ -8,3 +8,15 @@
   display: flex;
   flex-direction: column;
 }
+
+.p {
+  text-align: center;
+  color: #dee2e6;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+
+  @media only screen and (max-width: 500px) {
+    font-size: 1.2rem;
+    margin: 0.5rem 1rem;
+  }
+}
